@@ -20,20 +20,23 @@ public class JournalService {
         return journalRepository.findAll();
     }
 
-    public Journal createJournal() {
-        throw new UnsupportedOperationException("Unimplemented method 'createJournal'");
+    public Journal createJournal(Journal journal) {
+        return journalRepository.save(journal);
+        }
+
+    public Journal getJournalById(String id) {
+        return journalRepository.findById(id).orElse(null);
     }
 
-    public String getJournalById() {
-        throw new UnsupportedOperationException("Unimplemented method 'getJournalById'");
+    public String deleteJournalById(String id) {
+    return journalRepository.findById(id).map(journal -> {
+            journalRepository.delete(journal);
+            return "Journal with id " + id + " deleted successfully.";
+        }).orElse("Journal with id " + id + " not found.");
     }
 
-    public String deleteJournalById() {
-        throw new UnsupportedOperationException("Unimplemented method 'deleteJournalById'");
-    }
-
-    public String getJournalByUserId() {
-        throw new UnsupportedOperationException("Unimplemented method 'getJournalByUserId'");
+    public Journal getJournalByUserId(String userId) {
+        return journalRepository.findById(userId).orElse(null);
     }
     
 }

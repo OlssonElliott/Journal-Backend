@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-@RequestMapping("/api/v1/journal")
+@RequestMapping("/api/v1/journals")
 public class JournalController {
 
     private final JournalService journalService;
@@ -32,23 +32,23 @@ public class JournalController {
     }
 
     @GetMapping("/getById")
-    public String getJournalById(@RequestParam String id) {
-        return journalService.getJournalById();
+    public Journal getJournalById(@RequestParam String id) {
+        return journalService.getJournalById(id);
     }
 
     @GetMapping("/getByUserId")
-    public String getJournalByUserId(@RequestParam String userId) {
-        return journalService.getJournalByUserId();
+    public Journal getJournalByUserId(@RequestParam String userId) {
+        return journalService.getJournalByUserId(userId);
     }
     
     @PostMapping("/create")
     public Journal createJournal(@RequestBody Journal newJournal) {
-        return journalService.createJournal();
+        return journalService.createJournal(newJournal);
     }
 
     @DeleteMapping("/delete")
     public String deleteJournalById (@RequestParam String id) {
-        return journalService.deleteJournalById();
+        return journalService.deleteJournalById(id);
     }
     
     
