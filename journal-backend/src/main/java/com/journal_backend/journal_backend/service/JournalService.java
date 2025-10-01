@@ -1,5 +1,6 @@
 package com.journal_backend.journal_backend.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,7 +22,10 @@ public class JournalService {
     }
 
     public Journal createJournal(Journal journal) {
-        return journalRepository.save(journal);
+    if (journal.getCreatedAt() == null) {
+        journal.setCreatedAt(new Date());
+    }
+    return journalRepository.save(journal);
         }
 
     public Journal getJournalById(String id) {
@@ -35,8 +39,8 @@ public class JournalService {
         }).orElse("Journal with id " + id + " not found.");
     }
 
-    public Journal getJournalByUserId(String userId) {
-        return journalRepository.findById(userId).orElse(null);
+    public List<Journal> getJournalByUserId(String userId) {
+        return journalRepository.findByUserId(userId);
     }
     
 }
