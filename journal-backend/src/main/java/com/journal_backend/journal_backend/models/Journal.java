@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Journal {
     @Id
     private String id;
+    private String userId;
     private String title;
     private String content;
     private String emotionalState;

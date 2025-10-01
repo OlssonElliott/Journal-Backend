@@ -37,7 +37,7 @@ public class JournalController {
     }
 
     @GetMapping("/getByUserId")
-    public Journal getJournalByUserId(@RequestParam String userId) {
+    public List<Journal> getJournalByUserId(@RequestParam String userId) {
         return journalService.getJournalByUserId(userId);
     }
     
